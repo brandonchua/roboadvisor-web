@@ -1,72 +1,96 @@
 // src/app/page.tsx
 import Link from "next/link";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 px-4">
-      <h1 className="text-6xl font-extrabold text-gray-900 mb-4">
-        RoboAdvisor
-      </h1>
-      <p className="text-lg text-gray-700 max-w-2xl text-center mb-8">
-        Welcome to RoboAdvisor—a mean‑variance portfolio builder powered by
-        academic rigor and real‑world data. Answer a few simple questions to
-        discover an investment mix tailored to your unique risk profile.
-      </p>
+    <Container className="py-5">
+      {/* Hero */}
+      <Card bg="light" className="text-center mb-5 shadow-sm">
+        <Card.Body className="py-5">
+          <Card.Title as="h1" className="display-4 mb-3">
+            RoboAdvisor
+          </Card.Title>
+          <Card.Text className="lead mb-4">
+            Mean‑variance portfolio builder powered by academic rigor and real‑
+            world data. Answer a few quick questions to craft an investment mix
+            tailored just for you.
+          </Card.Text>
+          <Link href="/questionnaire" passHref>
+            <Button size="lg" variant="primary">
+              Start the Survey →
+            </Button>
+          </Link>
+        </Card.Body>
+      </Card>
 
       {/* Project Objectives */}
-      <div className="bg-white shadow-lg rounded-lg p-6 mb-10 max-w-3xl">
-        <h2 className="text-2xl font-semibold mb-4 text-gray-800">
-          Project Objectives
-        </h2>
-        <ul className="list-disc list-inside space-y-2 text-gray-600">
-          <li>
-            **Educate**: Demystify Modern Portfolio Theory for everyday
-            investors.
-          </li>
-          <li>
-            **Customize**: Translate your personal goals and comfort with risk
-            into a data‑driven asset allocation.
-          </li>
-          <li>
-            **Visualize**: See your Optimal Portfolio and Efficient Frontier
-            plotted graphically.
-          </li>
-        </ul>
-      </div>
+      <h2 className="mb-3">Project Objectives</h2>
+      <Row className="mb-5">
+        {[
+          {
+            title: "Educate",
+            text: "Demystify Modern Portfolio Theory for everyday investors.",
+          },
+          {
+            title: "Customize",
+            text: "Translate your goals and risk appetite into data‑driven portfolios.",
+          },
+          {
+            title: "Visualize",
+            text: "See your Optimal Portfolio & Efficient Frontier plotted clearly.",
+          },
+        ].map((obj) => (
+          <Col md={4} key={obj.title} className="mb-3">
+            <Card className="h-100 text-center shadow-sm">
+              <Card.Body>
+                <Card.Title>{obj.title}</Card.Title>
+                <Card.Text>{obj.text}</Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+      </Row>
 
       {/* Credits */}
-      <div className="text-center text-gray-600 mb-10 max-w-2xl">
-        <p>
-          Developed under the guidance of{" "}
-          <strong>Prof. Lee Hong Sing</strong> (BMD5302 Financial Modeling).  
-          Huge thanks for his teachings and insights into portfolio theory!
-        </p>
-      </div>
+      <Card className="text-center mb-5 border-0">
+        <Card.Body>
+          <small className="text-muted">
+            Developed under the guidance of{" "}
+            <strong>Prof. Lee Hong Sing</strong> (BMD5302 Financial Modeling).  
+            A big thank‑you for his expertise and mentorship!
+          </small>
+        </Card.Body>
+      </Card>
 
       {/* Team */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+      <h2 className="mb-3">Meet the Team</h2>
+      <Row className="gy-4 text-center mb-5">
         {[
           "Brandon Chua",
-          "Claudia Anna Maria Nori",
-          "Jong Zhi Kai",
-          "Kitahara Yutaro",
-          "Wang Xinyao",
+          "Claudia Anna Maria Nori",
+          "Jong Zhi Kai",
+          "Kitahara Yutaro",
+          "Wang Xinyao",
         ].map((name) => (
-          <div
-            key={name}
-            className="bg-white rounded-lg shadow p-4 flex items-center justify-center"
-          >
-            <span className="text-gray-800 font-medium">{name}</span>
-          </div>
+          <Col sm={6} lg={4} key={name}>
+            <Card className="shadow-sm">
+              <Card.Body>
+                <Card.Text className="mb-0">{name}</Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
         ))}
-      </div>
+      </Row>
 
-      {/* Call to action */}
-      <Link href="/questionnaire">
-        <a className="inline-block bg-blue-600 text-white px-8 py-4 rounded-lg shadow-lg hover:bg-blue-700 transition">
-          Start the Survey →
-        </a>
-      </Link>
-    </div>
+      {/* Footer CTA */}
+      <div className="text-center">
+        <Link href="/questionnaire" passHref>
+          <Button variant="outline-primary" size="lg">
+            Begin Your Personalized Survey
+          </Button>
+        </Link>
+      </div>
+    </Container>
   );
 }

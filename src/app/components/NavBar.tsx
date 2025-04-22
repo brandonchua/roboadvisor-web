@@ -18,8 +18,7 @@ export default function NavBar() {
         <Navbar.Toggle aria-controls="main-nav" />
         <Navbar.Collapse id="main-nav">
           <Nav className="me-auto">
-            <Nav.Link as={Link} className="mx-3 py-2 fs-5" href="/questionnaire">Survey</Nav.Link>
-            <Nav.Link as={Link} className="mx-3 py-2 fs-5" href="/frontier">Efficient Frontier</Nav.Link>
+            <Nav.Link as={Link} className="mx-3 py-2 fs-5" href="/questionnaire">Survey</Nav.Link>            
             <Nav.Link as={Link} className="mx-3 py-2 fs-5" href="/universe">Fund Universe</Nav.Link>
             <Nav.Link as={Link} className="mx-3 py-2 fs-5" href="/recommendation">Recommendation</Nav.Link>
             <Nav.Link as={Link} className="mx-3 py-2 fs-5" href="/what‑if">What‑If</Nav.Link>
