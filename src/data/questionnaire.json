@@ -1,0 +1,157 @@
+[
+  {
+    "id": "q1_1",
+    "text": "What is your investment horizon?",
+    "type": "single",
+    "options": ["<3 years", "3–5 years", "6–10 years", ">10 years"]
+  },
+  {
+    "id": "q1_2",
+    "text": "If your portfolio dropped 20%, how would you react?",
+    "type": "single",
+    "options": ["Sell all", "Sell some", "Hold", "Buy more"]
+  },
+  {
+    "id": "q1_3",
+    "text": "What percentage of your annual income are you comfortable investing?",
+    "type": "single",
+    "options": ["<10%", "10–25%", "25–50%", ">50%"]
+  },
+  {
+    "id": "q2_1",
+    "text": "How stable is your income relative to expenses?",
+    "type": "single",
+    "options": [
+      "Net income comfortably exceeds expenses",
+      "Net income slightly exceeds expenses",
+      "Net income barely covers expenses",
+      "Expenses exceed income"
+    ]
+  },
+  {
+    "id": "q2_2",
+    "text": "How many months of living expenses are covered by your emergency fund?",
+    "type": "single",
+    "options": ["<1 month", "1–3 months", "3–6 months", ">6 months"]
+  },
+  {
+    "id": "q2_3",
+    "text": "What is your level of debt and liabilities?",
+    "type": "single",
+    "options": ["No significant debt", "Some manageable debt", "High debt load"]
+  },
+  {
+    "id": "q2_4",
+    "text": "What % of your net worth will you invest here?",
+    "type": "single",
+    "options": ["<10%", "10–30%", "30–50%", ">50%"]
+  },
+  {
+    "id": "q2_5",
+    "text": "Major financial commitments in the near future? (select all that apply)",
+    "type": "multi",
+    "options": [
+      "Home purchase",
+      "Child’s education",
+      "Large medical expense",
+      "Business investment",
+      "Other major expense",
+      "None"
+    ]
+  },
+  {
+    "id": "q3_1",
+    "text": "What is your primary investment goal?",
+    "type": "single",
+    "options": [
+      "Preserve capital",
+      "Generate income",
+      "Moderate growth",
+      "Aggressive growth",
+      "Speculative gains"
+    ]
+  },
+  {
+    "id": "q3_2",
+    "text": "Expected time horizon for this investment?",
+    "type": "single",
+    "options": ["<3 years", "3–7 years", "7–15 years", ">15 years"]
+  },
+  {
+    "id": "q3_3",
+    "text": "When might you need to withdraw a significant portion?",
+    "type": "single",
+    "options": ["Immediately", "1–2 years", "2–5 years", ">5 years"]
+  },
+  {
+    "id": "q3_4",
+    "text": "How important is liquidity (cash access) to you?",
+    "type": "single",
+    "options": ["Extremely", "Somewhat", "Not very"]
+  },
+  {
+    "id": "q4_1",
+    "text": "How would you describe your investment experience?",
+    "type": "single",
+    "options": ["None", "Basic (funds only)", "Moderate (stocks/bonds)", "Extensive"]
+  },
+  {
+    "id": "q4_2",
+    "text": "How do you feel about short‑term market fluctuations?",
+    "type": "single",
+    "options": ["Very uncomfortable", "Somewhat uncomfortable", "Neutral", "Comfortable"]
+  },
+  {
+    "id": "q4_3",
+    "text": "If your portfolio lost 10% in a month, what would you do?",
+    "type": "single",
+    "options": ["Sell everything", "Sell some", "Hold", "Buy more"]
+  },
+  {
+    "id": "q4_4",
+    "text": "If it lost 30% over 6 months, how would you react?",
+    "type": "single",
+    "options": ["Sell everything", "Sell some", "Hold", "Buy more"]
+  },
+  {
+    "id": "q4_5",
+    "text": "Which best describes your view on gains vs. losses?",
+    "type": "single",
+    "options": [
+      "Avoid any loss (even low returns)",
+      "Accept small losses for steady returns",
+      "Accept moderate losses for higher returns",
+      "Accept large swings for maximum upside"
+    ]
+  },
+  {
+    "id": "q5_1",
+    "text": "Have you ever sold an investment quickly after a short‑term drop?",
+    "type": "single",
+    "options": ["Yes & regretted it", "Yes & felt right", "No, I held on", "Never faced it"]
+  },
+  {
+    "id": "q5_2",
+    "text": "Do you get stressed by market news or day‑to‑day volatility?",
+    "type": "single",
+    "options": ["Very stressed", "Somewhat stressed", "Rarely stressed", "Not stressed"]
+  },
+  {
+    "id": "q6_1",
+    "text": "Would you like to include alternative assets (real estate, PE)?",
+    "type": "single",
+    "options": ["Yes", "Possibly", "No"]
+  },
+  {
+    "id": "q6_2",
+    "text": "Any upcoming changes in your income?",
+    "type": "single",
+    "options": ["Increase expected", "Decrease expected", "No change"]
+  },
+  {
+    "id": "q6_3",
+    "text": "Do you have sufficient insurance coverage?",
+    "type": "single",
+    "options": ["Yes", "Somewhat", "No"]
+  }
+]
