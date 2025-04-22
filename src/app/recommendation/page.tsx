@@ -1,32 +1,35 @@
 // src/app/recommendation/page.tsx
-import React from 'react'
 import { notFound } from 'next/navigation'
 import PieChart from './PieChart'
-import funds from '../../data/funds.json'    // your 10‑element fund list
+import funds    from '../../data/funds.json'
 
 interface RecommendationPageProps {
   searchParams: { weights?: string }
 }
 
 export default function RecommendationPage({ searchParams }: RecommendationPageProps) {
-  // parse the weights JSON from URL
-  let weights: number[] = []
+  // 1. Grab the raw JSON string from the URL
+  const raw = searchParams.weights ?? '[]'
+
+  // 2. Try to parse it into an array of numbers
+  let weights: number[]
   try {
-    const raw = searchParams.weights || '[]'
     const parsed = JSON.parse(raw)
-    if (Array.isArray(parsed) && parsed.every((x) => typeof x === 'number')) {
-      weights = parsed
-    } else {
-      throw new Error('bad array')
+    if (
+      !Array.isArray(parsed) ||
+      !parsed.every((x) => typeof x === 'number')
+    ) {
+      throw new Error('invalid weights')
     }
+    weights = parsed
   } catch {
-    // if something went wrong, show 404 or fallback:
+    // If parsing fails, show a 404
     return notFound()
   }
 
-  // prepare two‐decimal percentages for chart + table
-  const pct = weights.map(w => Math.round(w * 10000) / 100)
-  const labels = funds.map(f => f.name)
+  // 3. Convert to percent values for display
+  const pct = weights.map((w) => Math.round(w * 10000) / 100)
+  const labels = funds.map((f) => f.name)
 
   return (
     <div>
@@ -36,10 +39,10 @@ export default function RecommendationPage({ searchParams }: RecommendationPageP
       </p>
 
       <div className="grid lg:grid-cols-2 gap-8">
-        {/* CLIENT‐ONLY PIE */}
+        {/* PieChart is a client component (it begins with "use client") */}
         <PieChart labels={labels} data={pct} />
 
-        {/* SERVER‐ONLY TABLE */}
+        {/* Static server‑rendered table */}
         <div className="overflow-x-auto">
           <table className="w-full table-auto bg-white rounded-lg shadow">
             <thead className="bg-gray-100">
