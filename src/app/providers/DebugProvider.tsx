@@ -1,24 +1,29 @@
-// src/app/providers/DebugProvider.tsx
-"use client";
-
-import React, { createContext, useContext, useState, ReactNode } from "react";
+'use client';               // ← this is absolutely critical
+import { createContext, useContext, useState, ReactNode } from 'react';
 
 interface DebugContext {
   debug: boolean;
   toggle: () => void;
 }
 
-const ctx = createContext<DebugContext>({ debug: false, toggle: () => {} });
+const _DebugContext = createContext<DebugContext | null>(null);
 
 export function DebugProvider({ children }: { children: ReactNode }) {
   const [debug, setDebug] = useState(false);
   return (
-    <ctx.Provider value={{ debug, toggle: () => setDebug(d => !d) }}>
+    <_DebugContext.Provider
+      value={{
+        debug,
+        toggle: () => setDebug((d) => !d),
+      }}
+    >
       {children}
-    </ctx.Provider>
+    </_DebugContext.Provider>
   );
 }
 
-export function useDebug() {
-  return useContext(ctx);
+export function useDebug(): DebugContext {
+  const ctx = useContext(_DebugContext);
+  if (!ctx) throw new Error('useDebug must be inside a <DebugProvider>');
+  return ctx;
 }
