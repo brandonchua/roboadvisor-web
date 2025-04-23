@@ -1,53 +1,54 @@
 [
-    {
+  {
     "id": "q1_1",
-    "text": "What is your Age?",
+    "text": "What is your investment horizon?",
     "type": "single",
-    "options": ["Under 25", "25–39", "40–59", "60+"]
+    "options": ["<3 years", "3–5 years", "6–10 years", ">10 years"]
   },
-
   {
     "id": "q1_2",
-    "text": "What is your marital status & number of dependents?",
+    "text": "If your portfolio dropped 20%, how would you react?",
     "type": "single",
-    "options": ["Single, no dependents", "Married/partnered, no dependents", "Married/partnered, with dependents", "Single, with dependents"]
+    "options": ["Sell all", "Sell some", "Hold", "Buy more"]
   },
-
   {
     "id": "q1_3",
-    "text": "What is your employment status?",
+    "text": "What percentage of your annual income are you comfortable investing?",
     "type": "single",
-    "options": ["Full-time employed", "Part-time / contract / gig economy", "Self-employed / business owner", "Retired / not in workforce", "Student"]
+    "options": ["<10%", "10–25%", "25–50%", ">50%"]
   },
-
   {
     "id": "q2_1",
     "text": "How stable is your income relative to expenses?",
     "type": "single",
-    "options": ["My net income comfortably exceeds my monthly expenses", "My net income slightly exceeds my monthly expenses", "My net income barely covers my expenses", "My expenses exceed my income (deficit)"]
+    "options": [
+      "Net income comfortably exceeds expenses",
+      "Net income slightly exceeds expenses",
+      "Net income barely covers expenses",
+      "Expenses exceed income"
+    ]
   },
-
   {
     "id": "q2_2",
-    "text": "How many months of living expenses are covered by your emergency fund (liquid savings)?",
+    "text": "How many months of living expenses are covered by your emergency fund?",
     "type": "single",
-    "options": ["< 1 month", "1–3 months", "3–6 months", "6+ months"]
+    "options": ["<1 month", "1–3 months", "3–6 months", ">6 months"]
   },
   {
     "id": "q2_3",
-    "text": "What is your level of debt & liabilities?",
+    "text": "What is your level of debt and liabilities?",
     "type": "single",
     "options": ["No significant debt", "Some manageable debt", "High debt load"]
   },
   {
     "id": "q2_4",
-    "text": "Approx. % of your net worth to invest in this portfolio?",
+    "text": "What % of your net worth will you invest here?",
     "type": "single",
-    "options": ["Below 10%", "10–30%", "30–50%", "Over 50%"]
+    "options": ["<10%", "10–30%", "30–50%", ">50%"]
   },
   {
     "id": "q2_5",
-    "text": "Any major financial commitments in the near future? *Multiple choice*",
+    "text": "Major financial commitments in the near future? (select all that apply)",
     "type": "multi",
     "options": [
       "Home purchase",
@@ -58,43 +59,41 @@
       "None"
     ]
   },
-
   {
     "id": "q3_1",
     "text": "What is your primary investment goal?",
     "type": "single",
     "options": [
-      "Preserve capital (beat inflation, minimal risk)",
-      "Generate income (dividends/interest)",
-      "Grow wealth (medium-term)",
-      "Long-term growth (retirement, estate)",
-      "Speculative gains (higher risk/higher reward)"
+      "Preserve capital",
+      "Generate income",
+      "Moderate growth",
+      "Aggressive growth",
+      "Speculative gains"
     ]
   },
-
   {
     "id": "q3_2",
     "text": "Expected time horizon for this investment?",
     "type": "single",
-    "options": ["<3 years", "3–5 years", "5–10 years", "10-15 years","15+ years"]
+    "options": ["<3 years", "3–7 years", "7–15 years", ">15 years"]
   },
   {
     "id": "q3_3",
     "text": "When might you need to withdraw a significant portion?",
     "type": "single",
-    "options": ["< 3 years", "3–7 years", "7–15 years", "15+ years"]
+    "options": ["Immediately", "1–2 years", "2–5 years", ">5 years"]
   },
   {
     "id": "q3_4",
     "text": "How important is liquidity (cash access) to you?",
     "type": "single",
     "options": ["Extremely", "Somewhat", "Not very"]
-  }, 
+  },
   {
     "id": "q4_1",
     "text": "How would you describe your investment experience?",
     "type": "single",
-    "options": ["None (completely new)", "Basic (funds only)", "Moderate (stocks/bonds)", "Extensive (manage own portfolio, multiple asset classes)"]
+    "options": ["None", "Basic (funds only)", "Moderate (stocks/bonds)", "Extensive"]
   },
   {
     "id": "q4_2",
@@ -104,25 +103,25 @@
   },
   {
     "id": "q4_3",
-    "text": "If your portfolio lost 10% in a month, what would you most likely do?",
+    "text": "If your portfolio lost 10% in a month, what would you do?",
     "type": "single",
-    "options": ["Sell everything to avoid further losses", "Sell some, move to safe assets", "Hold", "Buy more"]
+    "options": ["Sell everything", "Sell some", "Hold", "Buy more"]
   },
   {
     "id": "q4_4",
     "text": "If it lost 30% over 6 months, how would you react?",
     "type": "single",
-    "options": ["Extremely anxious; likely sell", "Concerned; might reduce exposure", "Uncomfortable but would hold", "View it as a buying opportunity"]
+    "options": ["Sell everything", "Sell some", "Hold", "Buy more"]
   },
   {
     "id": "q4_5",
-    "text": "Which statement best describes your view on gains vs. losses?",
+    "text": "Which best describes your view on gains vs. losses?",
     "type": "single",
     "options": [
       "Avoid any loss (even low returns)",
       "Accept small losses for steady returns",
       "Accept moderate losses for higher returns",
-      "Accept significant volatility for higher potential returns"
+      "Accept large swings for maximum upside"
     ]
   },
   {
@@ -139,20 +138,20 @@
   },
   {
     "id": "q6_1",
-    "text": "Would you like to include alternative assets (e.g., real estate, private equity, hedge funds)?",
+    "text": "Would you like to include alternative assets (real estate, PE)?",
     "type": "single",
-    "options": ["Yes", "Possibly", "Not sure", "No"]
+    "options": ["Yes", "Possibly", "No"]
   },
   {
     "id": "q6_2",
     "text": "Any upcoming changes in your income?",
     "type": "single",
-    "options": ["Increase expected (promotion, windfall)", "Decrease expected (job uncertainty, retirement)", "No significant changes"]
+    "options": ["Increase expected", "Decrease expected", "No change"]
   },
   {
     "id": "q6_3",
     "text": "Do you have sufficient insurance coverage?",
     "type": "single",
-    "options": ["Yes", "Some coverage", "No"]
+    "options": ["Yes", "Somewhat", "No"]
   }
 ]

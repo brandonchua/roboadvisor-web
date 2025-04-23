@@ -1,12 +1,12 @@
 [
-  { "name": "AB FCP I Global Equity Blend A USD","avgReturn": 0.000312998 },
-  { "name": "Fidelity Asia Pacific Dividend A-USD","avgReturn": 0.000225984 },
-  { "name": "Fidelity Global Technology A-ACC-USD", "avgReturn": 0.000800838 },
-  { "name": "FSSA Dividend Advantage A QDIS SGD", "avgReturn": 0.0000602674 },
-  { "name": "Fullerton Lux Funds – Asia Absolute Alpha A", "avgReturn": 0.000322611 },
-  { "name": "Janus Henderson Horizon Global Property Equities A2 USD", "avgReturn": 0.000221344 },
-  { "name": "JPMorgan Investment Funds – Global Select Equity", "avgReturn": 0.000468477 },
-  { "name": "Nikko AM Shenton Emerging Enterprise Discovery", "avgReturn": 0.000279763 },
-  { "name": "Schroder ISF Global Climate Change Equity A Acc USD", "avgReturn": 0.000376479 },
-  { "name": "United Global Healthcare Acc USD", "avgReturn": 0.000236237 }
+  { "name": "AB FCP I Global Equity Blend A USD","avgReturn": 0.0788755 },
+  { "name": "Fidelity Asia Pacific Dividend A-USD","avgReturn": 0.05694797 },
+  { "name": "Fidelity Global Technology A-ACC-USD", "avgReturn": 0.20181118 },
+  { "name": "FSSA Dividend Advantage A QDIS SGD", "avgReturn": 0.01518738 },
+  { "name": "Fullerton Lux Funds – Asia Absolute Alpha A", "avgReturn": 0.08129797 },
+  { "name": "Janus Henderson Horizon Global Property Equities A2 USD", "avgReturn": 0.05577869 },
+  { "name": "JPMorgan Investment Funds – Global Select Equity", "avgReturn": 0.1180562 },
+  { "name": "Nikko AM Shenton Emerging Enterprise Discovery", "avgReturn": 0.07050028 },
+  { "name": "Schroder ISF Global Climate Change Equity A Acc USD", "avgReturn": 0.09487271 },
+  { "name": "United Global Healthcare Acc USD", "avgReturn": 0.05953172 }
 ]
