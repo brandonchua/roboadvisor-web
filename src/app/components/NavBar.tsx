@@ -19,10 +19,7 @@ export default function NavBar() {
           <Nav className="me-auto">
             <Nav.Link as={Link} href="/questionnaire" className="mx-3 py-2 fs-5">
               Survey
-            </Nav.Link>
-            <Nav.Link as={Link} href="/frontier"      className="mx-3 py-2 fs-5">
-              Efficient Frontier
-            </Nav.Link>
+            </Nav.Link>            
             <Nav.Link as={Link} href="/universe"      className="mx-3 py-2 fs-5">
               Fund Universe
             </Nav.Link>
