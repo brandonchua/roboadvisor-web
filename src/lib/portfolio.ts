@@ -1,97 +1,81 @@
-// src/lib/portfolio.ts
-
-import { inv, multiply } from 'mathjs';
-import * as qp from 'quadprog';
+import qp from 'quadprog'
 
 /**
- * Mean–variance optimizer with risk aversion A:
+ * Long-only mean–variance optimizer:
  *
- *   maximize wᵀμ − (A/2)·wᵀΣw
- *   subject to 1ᵀw = 1
+ *   maximize    wᵀμ − (A/2)·wᵀΣw
+ *   subject to  ∑ᵢ wᵢ = 1
+ *                wᵢ ≥ 0  for all i
  *
- * Closed‐form KKT solution:
- *   let invΣ = Σ⁻¹
- *       invMu  = invΣ · μ
- *       invOne = invΣ · 1
- *       b = 1ᵀ invMu
- *       c = 1ᵀ invOne
- *       λ = (A − b) / c
- *   then w = (1/A)·invMu + (λ/A)·invOne
+ * Quadprog solves:
+ *   minimize  ½ wᵀ Dmat w  −  dvecᵀ w
+ * subject to  Amatᵀ w ≥ bvec
  *
- * @param mu  expected returns (length n)
- * @param cov covariance matrix n×n
- * @param A   risk aversion scalar (>0)
- * @returns   portfolio weights summing to 1
+ * To get  maximize [ wᵀμ − (A/2) wᵀΣw ], we set:
+ *   Dmat = A·Σ
+ *   dvec = μ        (so that −dvecᵀ w = −μᵀw)
+ *
+ * And our constraints are:
+ *   • equality   1ᵀw = 1
+ *   • inequality w ≥ 0
  */
-export function optimize(
+export function optimizeLongOnly(
   mu: number[],
   cov: number[][],
   A: number
 ): number[] {
-  const n = mu.length;
-  const one = Array(n).fill(1);
+  const n = mu.length
 
-  // Σ⁻¹
-  const invSigma = inv(cov) as number[][];
+  // 1) Quadratic term: A·Σ
+  const Dmat = cov.map(row => row.map(val => val * A))
 
-  // Σ⁻¹ μ  and  Σ⁻¹ 1
-  const invMu  = multiply(invSigma, mu)  as number[];
-  const invOne = multiply(invSigma, one) as number[];
+  // 2) Linear term: μ
+  const dvec = mu.slice()
 
-  // b = 1ᵀ Σ⁻¹ μ
-  const b = invMu.reduce((sum, w) => sum + w, 0);
+  // 3) Build constraint rows: sum-to-one + identity rows
+  const eqRow = Array(n).fill(1)
+  const ineqRows = Array.from({ length: n }, (_, i) => {
+    const r = Array(n).fill(0)
+    r[i] = 1
+    return r
+  })
 
-  // c = 1ᵀ Σ⁻¹ 1
-  const c = invOne.reduce((sum, w) => sum + w, 0);
+  // 4) Transpose into columns for quadprog
+  const allRows = [eqRow, ...ineqRows]
+  const Amat = allRows[0].map((_, col) =>
+    allRows.map(row => row[col])
+  )
 
-  // λ from equality constraint 1ᵀw = 1
-  const λ = (A - b) / c;
+  // 5) RHS vector: first = 1 (equality), then zeros
+  const bvec = [1, ...Array(n).fill(0)]
 
-  // w = (1/A)·invMu + (λ/A)·invOne
-  return invMu.map((w_i, i) =>
-    (w_i + λ * invOne[i]) / A
-  );
+  // 6) Number of equalities
+  const meq = 1
+
+  // 7) Solve
+  const result = qp.solveQP(Dmat, dvec, Amat, bvec, meq)
+
+  // 8) Extract solution array
+  const rawW: any = Array.isArray(result)
+    ? result
+    : (result as any).solution
+
+  if (!Array.isArray(rawW) || rawW.length !== n) {
+    console.error('🚨 quadprog failed to return a valid solution:', result)
+    // fallback: equal-weight
+    return Array(n).fill(1 / n)
+  }
+
+  // 9) Clamp negatives/NaN → 0, then renormalize to sum=1
+  const cleaned = rawW.map(w =>
+    typeof w === 'number' && isFinite(w) && w > 0 ? w : 0
+  )
+  const total = cleaned.reduce((sum, x) => sum + x, 0) || 1
+
+  return cleaned.map(w => w / total)
 }
-
 
 /**
- * Minimum‐variance portfolio for given target return R:
- *   minimize wᵀΣw
- *   subject to μᵀw = R,  1ᵀw = 1
- *
- * Translates into quadprog.js call:
- *   min (1/2) wᵀΣw + 0ᵀw
- *   s.t.  Aᵀw = b
- *
- * @param mu  expected returns vector (length n)
- * @param cov covariance matrix (n×n)
- * @param R   target portfolio return
- * @returns   weight vector w of length n
+ * Alias for backward-compatibility
  */
-export function optimizeR(
-  mu: number[],
-  cov: number[][],
-  R: number
-): number[] {
-  const n = mu.length;
-
-  // Quadratic term (covariance)
-  const Dmat = cov;
-
-  // Linear term = zero
-  const dvec = Array(n).fill(0);
-
-  // Constraints matrix: [μ; 1] columns
-  const Amat = [
-    mu,
-    Array(n).fill(1),
-  ];
-
-  // RHS for [μᵀw = R; 1ᵀw = 1]
-  const bvec = [R, 1];
-
-  const meq = 2; // two equality constraints
-
-  const result = qp.solveQP(Dmat, dvec, Amat, bvec, meq);
-  return result.solution as number[];
-}
+export const optimize = optimizeLongOnly

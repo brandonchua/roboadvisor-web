@@ -125,3 +125,11 @@ export function computeRiskAversion(answers: Record<string, any>): number {
   if (total <= 81) return 7;
   return 10;
 }
+
+export function getRiskProfile(score: number): { profile: string; description: string } {
+  if (score < 30)      return { profile: 'Very Conservative', description: 'Capital preservation' }
+  if (score < 50)      return { profile: 'Conservative',     description: 'Modest returns, low volatility' }
+  if (score < 70)      return { profile: 'Balanced',        description: 'Moderate growth & income' }
+  if (score < 90)      return { profile: 'Aggressive',      description: 'Long-term growth' }
+  return { profile: 'Very Aggressive', description: 'Maximize returns' }
+}
