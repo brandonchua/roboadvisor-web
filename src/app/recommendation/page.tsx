@@ -5,7 +5,8 @@ import { useEffect, useState } from 'react'
 import { useRouter }          from 'next/navigation'
 import PieChart               from './PieChart'
 import funds                  from '../../data/funds.json'
-import { getRiskProfile }     from '../../lib/risk'
+//import { getRiskProfile }     from '../../lib/risk'
+import { getProfileForA } from '../../lib/risk'
 
 interface ApiResponse {
   aversion: number
@@ -58,7 +59,8 @@ export default function RecommendationPage() {
   if (!data)  return <div className="p-8 max-w-2xl mx-auto text-gray-500">Loading…</div>
 
   const { aversion, weights, stats } = data
-  const { profile, description }     = getRiskProfile(aversion)
+  //const { profile, description }     = getRiskProfile(aversion)
+  const { profile, description } = getProfileForA(aversion)
   const allocations                   = weights.map(w => +(w * 100).toFixed(2))
   const totalAlloc                    = allocations.reduce((sum, x) => sum + x, 0).toFixed(2)
   const labels                        = funds.map(f => f.name)

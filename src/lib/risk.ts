@@ -133,3 +133,15 @@ export function getRiskProfile(score: number): { profile: string; description: s
   if (score < 90)      return { profile: 'Aggressive',      description: 'Long-term growth' }
   return { profile: 'Very Aggressive', description: 'Maximize returns' }
 }
+
+
+export function getProfileForA(A: number) {
+  switch (A) {
+    case 1:  return { profile: 'Very Conservative', description: 'Capital preservation' }
+    case 3:  return { profile: 'Conservative',     description: 'Modest returns, low volatility' }
+    case 5:  return { profile: 'Balanced',        description: 'Moderate growth & income' }
+    case 7:  return { profile: 'Aggressive',      description: 'Long-term growth' }
+    case 10: return { profile: 'Very Aggressive', description: 'Maximize returns' }
+    default: return { profile: 'Unclassified',    description: '' }
+  }
+}
