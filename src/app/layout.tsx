@@ -1,6 +1,6 @@
 // src/app/layout.tsx
-import 'bootstrap/dist/css/bootstrap.min.css'
 import './globals.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import type { ReactNode } from 'react'
 import NavBar            from './components/NavBar'
 
