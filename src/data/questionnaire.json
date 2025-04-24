@@ -43,7 +43,7 @@
     "id": "q2_4",
     "text": "Approx. % of your net worth to invest in this portfolio?",
     "type": "single",
-    "options": ["Below 10%", "10–30%", "30–50%", "Over 50%"]
+    "options": ["Below 10 percent", "10–30 percent", "30–50 percent", "Over 50 percent"]
   },
   {
     "id": "q2_5",

@@ -1,10 +1,11 @@
+// src/app/questionnaire/page.tsx
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useDebug } from '../providers/DebugProvider';
 import questions from '../../data/questionnaire.json';
-import { computeRiskAversion, computeRawScore } from '../../lib/risk';
+import { computeRawScore, computeRiskAversion } from '../../lib/risk';
 import {
   Container,
   Card,
@@ -19,53 +20,44 @@ export default function Questionnaire() {
   const [answers, setAnswers] = useState<Record<string, any>>({});
   const router = useRouter();
 
-  // whenever answers change, log them
-  useEffect(() => {
-    console.log(
-      'ANSWERS:', answers,
-      'raw=', computeRawScore(answers),
-      'A=', computeRiskAversion(answers)
-    );
-  }, [answers]);
-
-  // update one‐choice or multi‐choice
   const handleChange = (id: string, value: any) => {
     setAnswers(prev => ({ ...prev, [id]: value }));
   };
 
-  // submit handler
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('🔜 Submitting answers:', answers);
+
+    // compute raw score and aversion
+    const raw = computeRawScore(answers);
+    const A   = computeRiskAversion(answers);
+
+    // only log the final A value
+    console.log('🗝️ Final computed risk aversion A =', A);
+
     try {
       const res = await fetch('/api/optimize', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(answers),
       });
-      console.log('🛠️  API /optimize status:', res.status);
       if (!res.ok) {
-        const text = await res.text();
-        console.error('❌ API error body:', text);
-        alert('Server error – check console');
+        const errText = await res.text();
+        console.error('❌ API error:', errText);
+        alert('Server error—check console');
         return;
       }
+
       const { weights } = await res.json();
-      console.log('✅ API payload:', weights);
-      if (!Array.isArray(weights)) {
-        console.error('🚨 Bad weights array:', weights);
-        alert('Invalid server response');
-        return;
-      }
       router.push(
-        `/recommendation?weights=${encodeURIComponent(JSON.stringify(weights))}`
+        `/recommendation?answers=${encodeURIComponent(JSON.stringify(answers))}`
       );
     } catch (err) {
-      console.error('⚠️  Fetch failed:', err);
-      alert('Network error – check console');
+      console.error('⚠️ Network error:', err);
+      alert('Network error—check console');
     }
   };
 
+  // for the optional DEBUG panel
   const raw = computeRawScore(answers);
   const A   = computeRiskAversion(answers);
 
@@ -77,7 +69,6 @@ export default function Questionnaire() {
             Risk Profile Survey
           </Card.Title>
 
-          {/* only show when “Official Use” is toggled on */}
           {debug && (
             <div className="mb-4 px-3 py-2 bg-red-50 border-l-4 border-red-400">
               <strong>DEBUG:</strong> raw={raw}, A={A}
@@ -96,9 +87,7 @@ export default function Questionnaire() {
                   >
                     <option value="">Choose…</option>
                     {q.options.map(opt => (
-                      <option key={opt} value={opt}>
-                        {opt}
-                      </option>
+                      <option key={opt} value={opt}>{opt}</option>
                     ))}
                   </Form.Select>
                 ) : (
