@@ -21,10 +21,7 @@ export default function NavBar() {
             </Nav.Link>
             <Nav.Link as={Link} href="/recommendation" className="mx-3 py-2 fs-5">
               Recommendation
-            </Nav.Link>
-            <Nav.Link as={Link} href="/what-if" className="mx-3 py-2 fs-5">
-              What-If
-            </Nav.Link>
+            </Nav.Link>            
             <Nav.Link as={Link} href="/about" className="mx-3 py-2 fs-5">
               About
             </Nav.Link>
