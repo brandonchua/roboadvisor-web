@@ -50,7 +50,7 @@ export default function AboutPage() {
             that truly reflects your goals and risk appetite.
           </Card.Text>
           <Card.Text>
-            We are NUS MFDT students passionate about making sophisticated financial models
+            We are NUS Masters of Digital Financial Technologies students passionate about making sophisticated financial models
             approachable. This project is developed under the guidance of Prof. Lee Hong Sing.
           </Card.Text>
         </Card.Body>
