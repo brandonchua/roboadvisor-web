@@ -1,9 +1,7 @@
-// src/app/questionnaire/page.tsx
 'use client';
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useDebug } from '../providers/DebugProvider';
 import questions from '../../data/questionnaire.json';
 import { computeRawScore, computeRiskAversion } from '../../lib/risk';
 import {
@@ -16,7 +14,6 @@ import {
 } from 'react-bootstrap';
 
 export default function Questionnaire() {
-  const { debug } = useDebug();
   const [answers, setAnswers] = useState<Record<string, any>>({});
   const router = useRouter();
 
@@ -30,8 +27,6 @@ export default function Questionnaire() {
     // compute raw score and aversion
     const raw = computeRawScore(answers);
     const A   = computeRiskAversion(answers);
-
-    // only log the final A value
     console.log('🗝️ Final computed risk aversion A =', A);
 
     try {
@@ -41,8 +36,7 @@ export default function Questionnaire() {
         body: JSON.stringify(answers),
       });
       if (!res.ok) {
-        const errText = await res.text();
-        console.error('❌ API error:', errText);
+        console.error('❌ API error:', await res.text());
         alert('Server error—check console');
         return;
       }
@@ -57,10 +51,6 @@ export default function Questionnaire() {
     }
   };
 
-  // for the optional DEBUG panel
-  const raw = computeRawScore(answers);
-  const A   = computeRiskAversion(answers);
-
   return (
     <Container className="py-5">
       <Card>
@@ -68,12 +58,6 @@ export default function Questionnaire() {
           <Card.Title as="h2" className="mb-4">
             Risk Profile Survey
           </Card.Title>
-
-          {debug && (
-            <div className="mb-4 px-3 py-2 bg-red-50 border-l-4 border-red-400">
-              <strong>DEBUG:</strong> raw={raw}, A={A}
-            </div>
-          )}
 
           <Form onSubmit={onSubmit}>
             {questions.map(q => (

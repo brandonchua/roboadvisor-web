@@ -1,15 +1,11 @@
-'use client';  // NavBar uses useDebug(), which is a client‐side hook
+'use client';
 
 import Link      from 'next/link';
 import Navbar    from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav       from 'react-bootstrap/Nav';
-import Button    from 'react-bootstrap/Button';
-import { useDebug } from '../providers/DebugProvider';
 
 export default function NavBar() {
-  const { debug, toggle } = useDebug();
-
   return (
     <Navbar bg="primary" variant="dark" expand="lg" className="mb-4">
       <Container fluid>
@@ -19,23 +15,20 @@ export default function NavBar() {
           <Nav className="me-auto">
             <Nav.Link as={Link} href="/questionnaire" className="mx-3 py-2 fs-5">
               Survey
-            </Nav.Link>            
-            <Nav.Link as={Link} href="/universe"      className="mx-3 py-2 fs-5">
+            </Nav.Link>
+            <Nav.Link as={Link} href="/universe" className="mx-3 py-2 fs-5">
               Fund Universe
             </Nav.Link>
-            <Nav.Link as={Link} href="/recommendation"className="mx-3 py-2 fs-5">
+            <Nav.Link as={Link} href="/recommendation" className="mx-3 py-2 fs-5">
               Recommendation
             </Nav.Link>
-            <Nav.Link as={Link} href="/what-if"       className="mx-3 py-2 fs-5">
+            <Nav.Link as={Link} href="/what-if" className="mx-3 py-2 fs-5">
               What-If
             </Nav.Link>
-            <Nav.Link as={Link} href="/about"         className="mx-3 py-2 fs-5">
+            <Nav.Link as={Link} href="/about" className="mx-3 py-2 fs-5">
               About
             </Nav.Link>
           </Nav>
-          <Button variant={debug ? 'light' : 'outline-light'} onClick={toggle}>
-            Official Use
-          </Button>
         </Navbar.Collapse>
       </Container>
     </Navbar>
