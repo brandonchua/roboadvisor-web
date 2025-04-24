@@ -16,8 +16,7 @@ export default function NavBar() {
           <Nav className="me-auto">
             <Nav.Link as={Link} href="/questionnaire">Survey</Nav.Link>
             <Nav.Link as={Link} href="/universe">Fund Universe</Nav.Link>
-            <Nav.Link as={Link} href="/recommendation">Recommendation</Nav.Link>
-            <Nav.Link as={Link} href="/what-if">What-If</Nav.Link>
+            <Nav.Link as={Link} href="/recommendation">Recommendation</Nav.Link>            
             <Nav.Link as={Link} href="/about">About</Nav.Link>
           </Nav>
         </Navbar.Collapse>

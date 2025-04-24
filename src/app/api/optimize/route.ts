@@ -1,19 +1,25 @@
-// src/app/api/optimize/route.ts
 import { NextRequest, NextResponse } from 'next/server'
 import { computeRiskAversion }      from '../../../lib/risk'
 
 interface Stats {
-  return:    number
-  stdDev:    number
+  return:    number   // daily
+  stdDev:    number   // daily
   utility:   number
-  bestCase:  number
-  worstCase: number
-  median:    number
+  bestCase:  number   // daily
+  worstCase: number   // daily
+  median:    number   // daily
+}
+
+interface AnnualStats {
+  annualReturn:     number
+  annualVolatility: number
+  bestCaseAnn:      number
+  worstCaseAnn:     number
+  medianAnn:        number
 }
 
 const buckets: Record<number, { weights: number[]; stats: Stats }> = {
   1: {
-    // raw (may not sum exactly to 1)
     weights: [0.04103, 0, 0.64172, 0, 0.31521, 0, 0, 0.04306, 0, 0],
     stats: {
       return:    0.000640,
@@ -78,24 +84,36 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 })
   }
 
-  // derive your aversion bucket
+  // 1) compute A
   const A = computeRiskAversion(answers)
-  console.log(`[API /optimize] computed A =`, A)
 
-  // fetch raw bucket
-  const raw = buckets[A]?.weights ?? buckets[1].weights
-  const stats = buckets[A]?.stats  ?? buckets[1].stats
+  // 2) pull raw bucket (fallback to 1)
+  const raw  = buckets[A]?.weights  ?? buckets[1].weights
+  const stats = buckets[A]?.stats    ?? buckets[1].stats
 
-  // normalize so sum(raw) => 1 exactly
-  const sum = raw.reduce((acc, w) => acc + w, 0)
-  const weights = raw.map(w => +(w / sum).toFixed(5))
+  // 3) normalize weights so they sum to exactly 1
+  const sum = raw.reduce((a, x) => a + x, 0)
+  const weights = raw.map(w => w / sum)
 
-  // double-check:
-  console.log('[API /optimize] normalized weights sum =', weights.reduce((a,b) => a + b, 0))
+  // 4) annualize stats: annual = (1 + daily)^252 - 1 ; volatility * sqrt(252)
+  const annualReturn     = (1 + stats.return) ** 252 - 1
+  const annualVolatility = stats.stdDev * Math.sqrt(252)
+  const bestCaseAnn      = stats.bestCase * Math.sqrt(252)
+  const worstCaseAnn     = stats.worstCase * Math.sqrt(252)
+  const medianAnn        = stats.median * Math.sqrt(252)
+
+  const annualStats: AnnualStats = {
+    annualReturn,
+    annualVolatility,
+    bestCaseAnn,
+    worstCaseAnn,
+    medianAnn,
+  }
 
   return NextResponse.json({
-    aversion: A,
-    weights,
+    aversion:     A,
+    weights:      weights.map(w => +w.toFixed(5)),
     stats,
+    annualStats,
   })
 }
