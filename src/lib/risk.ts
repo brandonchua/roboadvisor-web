@@ -119,10 +119,10 @@ export function computeRawScore(answers: Record<string, any>): number {
  */
 export function computeRiskAversion(answers: Record<string, any>): number {
   const total = computeRawScore(answers);
-  if (total <= 30) return 1;
-  if (total <= 47) return 3;
-  if (total <= 64) return 5;
-  if (total <= 81) return 7;
+  if (total <= 30) return 7;
+  if (total <= 47) return 5;
+  if (total <= 64) return 3;
+  if (total <= 81) return 1;
   return 10;
 }
 
@@ -137,11 +137,11 @@ export function getRiskProfile(score: number): { profile: string; description: s
 
 export function getProfileForA(A: number) {
   switch (A) {
-    case 1:  return { profile: 'Very Conservative', description: 'Capital preservation' }
-    case 3:  return { profile: 'Conservative',     description: 'Modest returns, low volatility' }
+    case 10:  return { profile: 'Very Conservative', description: 'Capital preservation' }
+    case 7:  return { profile: 'Conservative',     description: 'Modest returns, low volatility' }
     case 5:  return { profile: 'Balanced',        description: 'Moderate growth & income' }
-    case 7:  return { profile: 'Aggressive',      description: 'Long-term growth' }
-    case 10: return { profile: 'Very Aggressive', description: 'Maximize returns' }
+    case 3:  return { profile: 'Aggressive',      description: 'Long-term growth' }
+    case 1: return { profile: 'Very Aggressive', description: 'Maximize returns' }
     default: return { profile: 'Unclassified',    description: '' }
   }
 }
