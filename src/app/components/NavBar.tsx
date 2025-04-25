@@ -32,10 +32,7 @@ export default function NavBar() {
           </Nav.Link>
           <Nav.Link as={Link} href="/universe">
             Fund Universe
-          </Nav.Link>
-          <Nav.Link as={Link} href="/recommendation">
-            Recommendation
-          </Nav.Link>
+          </Nav.Link>          
           <Nav.Link as={Link} href="/about">
             About
           </Nav.Link>
