@@ -167,13 +167,13 @@ export default function RecommendationPage() {
             <h2 className="text-2xl font-semibold mb-4">Latest Fund News</h2>
             <ul className="space-y-2">
               <li>
-                <a href="https://www.reuters.com/markets/us/tech-shares-focus-investors-eye-latest-filings-funds-2024-08-14/" target="_blank" rel="noopener">
-                  Tech shares in focus as investors eye latest filings from funds (Reuters)
+                <a href="https://www.fullertonfund.com/funds/fullerton-lux-funds-asia-absolute-alpha/#" target="_blank" rel="noopener">
+                  Fullerton Lux Funds – Asia Absolute Alpha
                 </a>
               </li>
               <li>
-                <a href="https://www.axios.com/2025/02/07/sustainable-investing-outflows" target="_blank" rel="noopener">
-                  The heyday of sustainable investing is over (Axios)
+                <a href="https://markets.ft.com/data/funds/tearsheet/summary?s=LU0410581705:SGD" target="_blank" rel="noopener">
+                  AB Global Equity Blend Portfolio seeks to achieve long-term growth of capital by investing in a portfolio of equity securities.
                 </a>
               </li>
               <li>
