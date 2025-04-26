@@ -168,29 +168,32 @@ export default function RecommendationPage() {
             <ul className="space-y-2">
               <li>
                 <a
-                  href="https://www.fidelity.com/fund/global-technology-news"
+                  href="https://www.fidelity.com/mutual-funds/fidelity-funds/fidelity-global-technology-fund/31644D401"
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="text-blue-600 hover:underline"
                 >
-                  Fidelity Global Technology Fund hits record high
+                  Fidelity Global Technology Fund A-ACC-USD Overview
                 </a>
               </li>
               <li>
                 <a
                   href="https://www.schroders.com/en/insights/global/climate-change-fund-update"
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="text-blue-600 hover:underline"
                 >
-                  Schroder ISF Climate Change Equity sees strong inflows
+                  Schroder ISF Global Climate Change Equity A Acc USD Update
                 </a>
               </li>
               <li>
                 <a
-                  href="https://www.jpmorgan.com/global-equity-select-overview"
+                  href="https://www.jpmorgan.com/wealth-management/invest/insights/funds/global-select-equity"
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="text-blue-600 hover:underline"
                 >
-                  JPMorgan Global Select Equity updates Q1 outlook
+                  JPMorgan Global Select Equity A (ACC) USD Q1 Outlook
                 </a>
               </li>
             </ul>
