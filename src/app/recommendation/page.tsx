@@ -168,32 +168,32 @@ export default function RecommendationPage() {
             <ul className="space-y-2">
               <li>
                 <a
-                  href="https://www.fidelity.com/mutual-funds/fidelity-funds/fidelity-global-technology-fund/31644D401"
+                  href="https://finance.yahoo.com/quote/0P00015OFP.F/news?p=0P00015OFP.F"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener"
                   className="text-blue-600 hover:underline"
                 >
-                  Fidelity Global Technology Fund A-ACC-USD Overview
+                  Fidelity Global Technology Fund (A-ACC-USD) » News Feed
                 </a>
               </li>
               <li>
                 <a
-                  href="https://www.schroders.com/en/insights/global/climate-change-fund-update"
+                  href="https://finance.yahoo.com/quote/0P0000IPS5.F/news?p=0P0000IPS5.F"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener"
                   className="text-blue-600 hover:underline"
                 >
-                  Schroder ISF Global Climate Change Equity A Acc USD Update
+                  Schroder ISF Global Climate Change Equity (A Acc USD) » News Feed
                 </a>
               </li>
               <li>
                 <a
-                  href="https://www.jpmorgan.com/wealth-management/invest/insights/funds/global-select-equity"
+                  href="https://finance.yahoo.com/quote/0P00012HGU.F/news?p=0P00012HGU.F"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener"
                   className="text-blue-600 hover:underline"
                 >
-                  JPMorgan Global Select Equity A (ACC) USD Q1 Outlook
+                  JPMorgan Global Select Equity (A ACC USD) » News Feed
                 </a>
               </li>
             </ul>
