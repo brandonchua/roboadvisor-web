@@ -167,33 +167,18 @@ export default function RecommendationPage() {
             <h2 className="text-2xl font-semibold mb-4">Latest Fund News</h2>
             <ul className="space-y-2">
               <li>
-                <a
-                  href="https://finance.yahoo.com/quote/0P00015OFP.F/news?p=0P00015OFP.F"
-                  target="_blank"
-                  rel="noopener"
-                  className="text-blue-600 hover:underline"
-                >
-                  Fidelity Global Technology Fund (A-ACC-USD) » News Feed
+                <a href="https://www.reuters.com/markets/us/tech-shares-focus-investors-eye-latest-filings-funds-2024-08-14/" target="_blank" rel="noopener">
+                  Tech shares in focus as investors eye latest filings from funds (Reuters)
                 </a>
               </li>
               <li>
-                <a
-                  href="https://finance.yahoo.com/quote/0P0000IPS5.F/news?p=0P0000IPS5.F"
-                  target="_blank"
-                  rel="noopener"
-                  className="text-blue-600 hover:underline"
-                >
-                  Schroder ISF Global Climate Change Equity (A Acc USD) » News Feed
+                <a href="https://www.axios.com/2025/02/07/sustainable-investing-outflows" target="_blank" rel="noopener">
+                  The heyday of sustainable investing is over (Axios)
                 </a>
               </li>
               <li>
-                <a
-                  href="https://finance.yahoo.com/quote/0P00012HGU.F/news?p=0P00012HGU.F"
-                  target="_blank"
-                  rel="noopener"
-                  className="text-blue-600 hover:underline"
-                >
-                  JPMorgan Global Select Equity (A ACC USD) » News Feed
+                <a href="https://www.ft.com/content/2c8258ba-f7ab-4bd1-8c0c-e25b871812f4" target="_blank" rel="noopener">
+                  Investors in clean energy funds backtrack as rates and Donald Trump cloud outlook (Financial Times)
                 </a>
               </li>
             </ul>
