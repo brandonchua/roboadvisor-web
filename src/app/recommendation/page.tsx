@@ -168,11 +168,11 @@ export default function RecommendationPage() {
             <ul className="space-y-2">
               <li>
                 <a
-                  href="https://www.fidelity.com/fund/global-technology-news"
+                  href="https://www.morningstar.co.uk/uk/news/246725/why-this-top-performing-fidelity-tech-fund-doesnt-own-nvidia-stock.aspx"
                   target="_blank"
                   className="text-blue-600 hover:underline"
                 >
-                  Fidelity Global Technology Fund hits record high
+                  Why This Top-Performing Fidelity Tech Fund Doesn’t Own Nvidia Stock
                 </a>
               </li>
               <li>
@@ -186,11 +186,11 @@ export default function RecommendationPage() {
               </li>
               <li>
                 <a
-                  href="https://www.jpmorgan.com/global-equity-select-overview"
+                  href="https://www.fullertonfund.com/newsroom/fullerton-with-undp-launches-sustainability-management-framework/"
                   target="_blank"
                   className="text-blue-600 hover:underline"
                 >
-                  JPMorgan Global Select Equity updates Q1 outlook
+                  Fullerton in partnership with UNDP launches its Sustainability Management Framework
                 </a>
               </li>
             </ul>
