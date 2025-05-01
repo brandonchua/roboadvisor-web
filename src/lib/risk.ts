@@ -119,11 +119,11 @@ export function computeRawScore(answers: Record<string, any>): number {
  */
 export function computeRiskAversion(answers: Record<string, any>): number {
   const total = computeRawScore(answers);
-  if (total <= 30) return 7;
-  if (total <= 47) return 5;
-  if (total <= 64) return 3;
-  if (total <= 81) return 1;
-  return 10;
+  if (total <= 30) return 10;
+  if (total <= 47) return 7;
+  if (total <= 64) return 5;
+  if (total <= 81) return 3;
+  return 1;
 }
 
 export function getRiskProfile(score: number): { profile: string; description: string } {

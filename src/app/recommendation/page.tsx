@@ -166,6 +166,7 @@ export default function RecommendationPage() {
           <div className="bg-white rounded-2xl shadow-lg p-6">
             <h2 className="text-2xl font-semibold mb-4">Latest Fund News</h2>
             <ul className="space-y-2">
+              News
               <li>
                 <a
                   href="https://www.morningstar.co.uk/uk/news/246725/why-this-top-performing-fidelity-tech-fund-doesnt-own-nvidia-stock.aspx"
