@@ -1,4 +1,4 @@
-// src/app/page.tsx — FinCow landing page (pasture hero, five markets, waveform charts, RoboAdvisor)
+// src/app/page.tsx — FinCow landing page (pasture hero, five markets, RoboAdvisor, member sign-in)
 import Link from 'next/link'
 import s from './landing.module.css'
 
@@ -11,7 +11,6 @@ const MARKETS = [
   { code: 'USD/JPY', name: 'US dollar · Yen',    host: 'usdjpy.charts.fincow.com', url: 'https://usdjpy.charts.fincow.com', tag: 'Yen'    },
   { code: 'XAU/USD', name: 'Gold · US dollar',   host: 'xauusd.charts.fincow.com', url: 'https://xauusd.charts.fincow.com', tag: 'Gold'   },
 ]
-const CADENCES = ['10s', '1m', '5m', '30m', '1d']
 
 function wave(amp: number, period: number, phase: number, w: number, h: number) {
   const pts: string[] = []
@@ -21,7 +20,6 @@ function wave(amp: number, period: number, phase: number, w: number, h: number) 
   }
   return pts.join(' ')
 }
-const FAN_COLORS = ['#e2a91a', '#e2a91a', '#7fc97f', '#7fc97f', '#4caf50', '#4caf50', '#9b8cf0', '#9b8cf0', '#c7b9ff']
 
 export default function Home() {
   return (
@@ -41,7 +39,6 @@ export default function Home() {
             <span>FinCow</span>
           </Link>
           <div className={s.navLinks}>
-            <a href="#charts">Waveform charts</a>
             <a href="#markets">Markets</a>
             <a href="#robo">RoboAdvisor</a>
             <a href={`${CHARTS}/login`} className={s.pill}>Member sign in</a>
@@ -52,8 +49,8 @@ export default function Home() {
           <p className={s.eyebrow}>Waveform charts · RoboAdvisor</p>
           <h1 className={s.h1}>Read the market&rsquo;s rhythm.</h1>
           <p className={s.lede}>
-            FinCow breaks price into the cycles beneath it, from 10-second ripples to the daily tide.
-            Five markets, live prices, one calm view.
+            Members-only charts for five major markets, and a RoboAdvisor that builds a portfolio around
+            how you feel about risk.
           </p>
           <div className={s.ctaRow}>
             <a href={`${CHARTS}/login`} className={s.btnGold}>Sign in to charts</a>
@@ -67,7 +64,6 @@ export default function Home() {
         <div className={`${s.wrap} ${s.marketsCard}`}>
           <div className={s.marketsHead}>
             <h2 id="markets-h" className={s.h2sm}>Five markets, one sign-in</h2>
-            <p className={s.small}>Live OANDA prices · switch pairs from inside any chart</p>
           </div>
           <div className={s.marketGrid}>
             {MARKETS.map((m, i) => (
@@ -85,39 +81,6 @@ export default function Home() {
               </a>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section id="charts" aria-labelledby="charts-h" className={s.charts}>
-        <div className={`${s.wrap} ${s.split}`}>
-          <div className={s.col}>
-            <p className={s.eyebrowGreen}>Waveform charts</p>
-            <h2 id="charts-h" className={s.h2}>Three panels, one wave field.</h2>
-            <p className={s.bodyText}>
-              Every chart stacks three panels. The top one follows the fast waves, the middle one the swing,
-              and the bottom one the slow fan that sets direction. Change the cadence and the same wave field
-              rescales with it.
-            </p>
-            <ul className={s.chips} aria-label="Cadences">
-              {CADENCES.map((c) => <li key={c} className={s.chip}>{c}</li>)}
-            </ul>
-            <div className={s.panels}>
-              <div className={s.panelRow}><span className={s.panelKey}>P0</span><span><b>Fast waves.</b> Where the next turn starts to show.</span></div>
-              <div className={s.panelRow}><span className={s.panelKey}>P1</span><span><b>The swing.</b> Colour groups spread evenly so the order is easy to read.</span></div>
-              <div className={s.panelRow}><span className={s.panelKey}>P2</span><span><b>The slow fan.</b> The tide underneath every move.</span></div>
-            </div>
-          </div>
-          <figure className={s.figure}>
-            <div className={s.figHead}><span>EUR/USD · 5m · P1</span><span>illustration</span></div>
-            <svg viewBox="0 0 520 300" width="100%" aria-hidden="true">
-              <line x1="0" y1="150" x2="520" y2="150" stroke="#2c4536" strokeWidth="1" />
-              {FAN_COLORS.map((c, i) => (
-                <path key={i} d={wave(26 + i * 11, 150 + i * 38, 0.35 * i, 520, 300)} fill="none" stroke={c}
-                  strokeWidth={i < 2 ? 2.6 : 2} strokeLinecap="round" opacity={(1 - i * 0.06).toFixed(2)} />
-              ))}
-            </svg>
-            <figcaption>Faster waves sit in front, slower ones fan out behind. The spacing between colour groups is what the chart is tuned to keep even.</figcaption>
-          </figure>
         </div>
       </section>
 

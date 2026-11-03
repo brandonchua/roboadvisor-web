@@ -6,7 +6,7 @@ import Shell from './components/Shell'
 
 export const metadata = {
   title:       'FinCow — Waveform charts and RoboAdvisor',
-  description: 'FinCow breaks price into the cycles beneath it, from 10-second ripples to the daily tide, and builds portfolios with Modern Portfolio Theory.',
+  description: 'Members-only market charts and a RoboAdvisor that builds portfolios with Modern Portfolio Theory.',
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
