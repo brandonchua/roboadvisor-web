@@ -1,135 +1,145 @@
-// src/app/page.tsx — FinCow landing page (pasture hero, five markets, RoboAdvisor, member sign-in)
+// src/app/page.tsx — FinCow master landing (institutional terminal layout on the #111111 ground)
 import Link from 'next/link'
 import s from './landing.module.css'
+import { AccessForm, FeedStatus, SessionMonitor, TickerGrid, WorldClocks } from './landing/Live'
 
 const CHARTS = 'https://charts.fincow.com'
 
-const MARKETS = [
-  { code: 'EUR/USD', name: 'Euro · US dollar',   host: 'charts.fincow.com',        url: CHARTS,                              tag: 'Main'   },
-  { code: 'GBP/USD', name: 'Pound · US dollar',  host: 'gbpusd.charts.fincow.com', url: 'https://gbpusd.charts.fincow.com', tag: 'Cable'  },
-  { code: 'AUD/USD', name: 'Aussie · US dollar', host: 'audusd.charts.fincow.com', url: 'https://audusd.charts.fincow.com', tag: 'Aussie' },
-  { code: 'USD/JPY', name: 'US dollar · Yen',    host: 'usdjpy.charts.fincow.com', url: 'https://usdjpy.charts.fincow.com', tag: 'Yen'    },
-  { code: 'XAU/USD', name: 'Gold · US dollar',   host: 'xauusd.charts.fincow.com', url: 'https://xauusd.charts.fincow.com', tag: 'Gold'   },
-]
+const Bolt = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" /></svg>
+)
+const Bars = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" /></svg>
+)
+const Lock = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg>
+)
 
-function wave(amp: number, period: number, phase: number, w: number, h: number) {
-  const pts: string[] = []
-  for (let x = 0; x <= w; x += 4) {
-    const y = h / 2 + amp * Math.sin((x / period) * 2 * Math.PI + phase)
-    pts.push(`${x === 0 ? 'M' : 'L'}${x} ${y.toFixed(1)}`)
-  }
-  return pts.join(' ')
-}
+const WAVE_SPECS = [
+  { t: 'Advanced Digital Signal Processing (DSP) Engine', d: 'Multi-horizon frequency-domain isolation separates short-cycle noise from the structural trend.' },
+  { t: 'Zero-Lag Multi-Timeframe Filtering Banks', d: 'Synchronized views from intraday to daily, read side by side in one workspace.' },
+  { t: 'Staggered Horizon Peak/Trough Calibration Matrices', d: '2-day, 3-day and 5-day synchronized lookbacks frame where each cycle turns.' },
+]
+const ROBO_SPECS = [
+  { t: 'Risk profiling', d: 'A structured questionnaire sets your custom risk-tolerance bounds.' },
+  { t: 'Mean-variance optimization', d: 'Modern Portfolio Theory weights a real fund universe along the efficient frontier.' },
+  { t: 'Allocation output', d: 'A clear, re-computable portfolio built around your tolerance band.' },
+]
 
 export default function Home() {
   return (
     <div className={s.page}>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      <link
-        rel="stylesheet"
-        precedence="default"
-        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap"
-      />
+      <link rel="stylesheet" precedence="default" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" />
 
-      <header className={s.hero}>
-        <nav aria-label="Main" className={`${s.wrap} ${s.nav}`}>
+      <header className={s.top}>
+        <div className={`${s.wrap} ${s.topRow}`}>
           <Link href="/" className={s.brand}>
-            <img src="/images/fincow-logo.png" alt="" width={44} height={44} />
-            <span>FinCow</span>
+            <img src="/images/fincow-logo.png" alt="" width={30} height={30} />
+            FinCow <span className={s.tag}>TERMINAL</span>
           </Link>
-          <div className={s.navLinks}>
+          <nav aria-label="Main" className={s.nav}>
             <a href="#markets">Markets</a>
+            <a href="#platform">Platform</a>
             <a href="#robo">RoboAdvisor</a>
-            <a href={`${CHARTS}/login`} className={s.pill}>Member sign in</a>
+            <a href="#access">Access</a>
+          </nav>
+          <div className={s.topRight}>
+            <FeedStatus />
+            <a href={`${CHARTS}/login`} className={s.btnSm}>Member sign in</a>
           </div>
-        </nav>
-
-        <div className={`${s.wrap} ${s.heroBody}`}>
-          <p className={s.eyebrow}>Waveform charts · RoboAdvisor</p>
-          <h1 className={s.h1}>Read the market&rsquo;s rhythm.</h1>
-          <p className={s.lede}>
-            Members-only charts for five major markets, and a RoboAdvisor that builds a portfolio around
-            how you feel about risk.
-          </p>
-          <div className={s.ctaRow}>
-            <a href={`${CHARTS}/login`} className={s.btnGold}>Sign in to charts</a>
-            <Link href="/questionnaire" className={s.btnGhost}>Build a portfolio</Link>
-          </div>
-          <p className={s.note}>Charts are for approved members. Accounts are issued by the FinCow admin.</p>
         </div>
       </header>
 
-      <section id="markets" aria-labelledby="markets-h" className={s.markets}>
-        <div className={`${s.wrap} ${s.marketsCard}`}>
-          <div className={s.marketsHead}>
-            <h2 id="markets-h" className={s.h2sm}>Five markets, one sign-in</h2>
+      <section className={s.hero} aria-labelledby="hero-h">
+        <div className={`${s.wrap} ${s.heroGrid}`}>
+          <div className={s.heroCopy}>
+            <p className={s.eyebrow}>Invitation-only · Institutional analytics</p>
+            <h1 id="hero-h" className={s.h1}>Decode Market Frequency. <em>Capitalize on Algorithmic Cycle Alignment.</em></h1>
+            <p className={s.sub}>
+              An invitation-only, institutional-grade analytics suite mapping multi-horizon asset momentum, paired with
+              automated portfolio optimization built on Modern Portfolio Theory.
+            </p>
+            <div className={s.ctas}>
+              <a href={`${CHARTS}/login`} className={s.btnPrimary}><Bolt /> Access Waveform Engine</a>
+              <Link href="/questionnaire" className={s.btnSecondary}><Bars /> Compute Portfolio Matrix</Link>
+            </div>
+            <p className={s.facts}><span><b>5</b> markets</span><span><b>3</b> global sessions</span><span><b>Invite-only</b> access</span></p>
           </div>
-          <div className={s.marketGrid}>
-            {MARKETS.map((m, i) => (
-              <a key={m.code} href={m.url} className={s.market}>
-                <span className={s.marketTop}>
-                  <span className={s.code}>{m.code}</span>
-                  <span className={s.tag}>{m.tag}</span>
-                </span>
-                <svg viewBox="0 0 160 36" width="100%" height="36" aria-hidden="true">
-                  <path d={wave(10, 70 + i * 9, i * 0.9, 160, 36)} fill="none" stroke="#2f7d32" strokeWidth="2" strokeLinecap="round" />
-                  <path d={wave(6, 150 + i * 14, 1.6 + i * 0.7, 160, 36)} fill="none" stroke="#e2a91a" strokeWidth="2" strokeLinecap="round" opacity="0.85" />
-                </svg>
-                <span className={s.marketName}>{m.name}</span>
-                <span className={s.host}>{m.host}</span>
-              </a>
-            ))}
-          </div>
+          <SessionMonitor />
         </div>
       </section>
 
-      <section id="robo" aria-labelledby="robo-h" className={s.robo}>
-        <div className={`${s.wrap} ${s.roboRow}`}>
-          <div className={s.roboMain}>
-            <p className={s.eyebrowGreen}>RoboAdvisor</p>
-            <h2 id="robo-h" className={s.h2md}>A portfolio that fits how you feel about risk.</h2>
-            <p className={s.bodyText}>
-              Answer a short risk survey and FinCow builds a portfolio from real fund data using Modern Portfolio
-              Theory. Built with students of the NUS MFDT programme.
+      <section id="markets" className={s.section} aria-labelledby="markets-h">
+        <div className={s.wrap}>
+          <div className={s.secHead}>
+            <h2 id="markets-h" className={s.h2}>Market regime board</h2>
+            <span className={s.secNote}>EUR/USD · GBP/USD · AUD/USD · USD/JPY · XAU/USD</span>
+          </div>
+          <TickerGrid />
+        </div>
+      </section>
+
+      <section id="platform" className={s.section} aria-label="The FinCow ecosystem">
+        <div className={`${s.wrap} ${s.wings}`}>
+          <article className={s.wing} aria-labelledby="wave-h">
+            <div className={s.wingKicker}><span>WING 01 · ANALYTICS</span><span>Members only</span></div>
+            <h2 id="wave-h" className={s.wingH}>The Waveform Dashboard</h2>
+            <p className={s.wingP}>A multi-horizon frequency domain isolation workspace for five major currency and commodity markets.</p>
+            <ul className={s.specs}>
+              {WAVE_SPECS.map((x, i) => (
+                <li key={x.t} className={s.spec}><span className={s.specIdx}>{String(i + 1).padStart(2, '0')}</span><div><div className={s.specT}>{x.t}</div><div className={s.specD}>{x.d}</div></div></li>
+              ))}
+            </ul>
+            <div className={s.wingCta}><a href={`${CHARTS}/login`} className={s.btnPrimary}><Bolt /> Access Waveform Engine</a></div>
+          </article>
+
+          <article id="robo" className={s.wing} aria-labelledby="robo-h">
+            <div className={s.wingKicker}><span>WING 02 · ALLOCATION</span><span>Open to all</span></div>
+            <h2 id="robo-h" className={s.wingH}>The RoboAdvisor Engine</h2>
+            <p className={s.wingP}>
+              A Modern Portfolio Theory (MPT) framework engineered in partnership with students of the NUS MFDT programme.
+              Allocation modeling re-weights funds to optimize the return curve within your custom risk-tolerance bounds.
             </p>
-            <div className={s.ctaRow}>
-              <Link href="/questionnaire" className={s.btnGreen}>Take the survey</Link>
-              <Link href="/universe" className={s.btnOutline}>See the fund universe</Link>
+            <ul className={s.specs}>
+              {ROBO_SPECS.map((x, i) => (
+                <li key={x.t} className={s.spec}><span className={s.specIdx}>{String(i + 1).padStart(2, '0')}</span><div><div className={s.specT}>{x.t}</div><div className={s.specD}>{x.d}</div></div></li>
+              ))}
+            </ul>
+            <div className={s.wingCta}><Link href="/questionnaire" className={s.btnSecondary}><Bars /> Compute Portfolio Matrix</Link></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="access" className={s.section} aria-labelledby="access-h">
+        <div className={`${s.wrap} ${s.gate}`}>
+          <div className={s.compliance}>
+            <span className={s.shield}><Lock /> ACCESS VERIFICATION GATE</span>
+            <h2 id="access-h" className={s.h2}>Restricted access</h2>
+            <p className={s.compP}>
+              Access is strictly restricted to approved algorithmic fund participants and private invitation recipients.
+              Accounts are authenticated and distributed exclusively by the FinCow System Administrator.
+            </p>
+            <a href={`${CHARTS}/login`} className={s.compLink}>Already approved? Sign in →</a>
+          </div>
+          <AccessForm />
+        </div>
+      </section>
+
+      <footer className={s.foot}>
+        <div className={s.wrap}>
+          <WorldClocks />
+          <div className={s.footRow}>
+            <div className={s.footBrand}><img src="/images/fincow-logo.png" alt="" width={22} height={22} /><span>© 2026 FinCow</span></div>
+            <div className={s.footLinks}>
+              <a href={`${CHARTS}/login`}>Member sign in</a>
+              <Link href="/questionnaire">RoboAdvisor</Link>
+              <Link href="/universe">Fund universe</Link>
+              <Link href="/about">About</Link>
             </div>
           </div>
-          <div className={s.roboSide}>
-            <h3 className={s.h3}>How it works</h3>
-            <ol className={s.steps}>
-              <li>Tell us your goals and how much swing you can sit through.</li>
-              <li>FinCow scores your risk profile.</li>
-              <li>It weights funds for the best return at that level of risk.</li>
-            </ol>
-          </div>
-        </div>
-      </section>
-
-      <section aria-labelledby="join-h" className={s.join}>
-        <div className={`${s.wrap} ${s.joinCard}`}>
-          <div className={s.joinText}>
-            <h2 id="join-h" className={s.joinH}>Access is by invitation.</h2>
-            <p className={s.joinP}>Ask the FinCow admin for an account. Then sign in with your email to open all five charts.</p>
-          </div>
-          <a href={`${CHARTS}/login`} className={s.btnGold}>Member sign in</a>
-        </div>
-      </section>
-
-      <footer className={s.footer}>
-        <div className={`${s.wrap} ${s.footRow}`}>
-          <div className={s.footBrand}>
-            <img src="/images/fincow-logo.png" alt="" width={28} height={28} />
-            <span>© 2026 FinCow</span>
-          </div>
-          <div className={s.footLinks}>
-            <a href={`${CHARTS}/login`}>Member sign in</a>
-            <Link href="/questionnaire">RoboAdvisor</Link>
-            <Link href="/about">About</Link>
-          </div>
+          <p className={s.disclaimer}>FinCow provides analytics and educational portfolio tools. Nothing on this site is investment advice or an offer to buy or sell any financial product.</p>
         </div>
       </footer>
     </div>

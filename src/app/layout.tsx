@@ -5,8 +5,8 @@ import type { ReactNode } from 'react'
 import Shell from './components/Shell'
 
 export const metadata = {
-  title:       'FinCow — Waveform charts and RoboAdvisor',
-  description: 'Members-only market charts and a RoboAdvisor that builds portfolios with Modern Portfolio Theory.',
+  title:       'FinCow — Institutional analytics and portfolio optimization',
+  description: 'An invitation-only analytics suite for five major markets, paired with portfolio optimization built on Modern Portfolio Theory.',
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
