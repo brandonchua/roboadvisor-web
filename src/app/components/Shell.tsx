@@ -1,24 +1,20 @@
 'use client'
 
 import { useEffect, type ReactNode } from 'react'
-import { usePathname } from 'next/navigation'
-import NavBar from './NavBar'
+import s from '../landing.module.css'
+import { SiteFooter, SiteHeader } from '../ui/SiteChrome'
 
-// The home page is a full-bleed landing page with its own header,
-// so it skips the shared NavBar and the centred content container.
+// Every page shares the dark terminal chrome on the #111111 application ground.
 export default function Shell({ children }: { children: ReactNode }) {
-  const pathname = usePathname()
-  // The landing page sits on the dark application ground (#111111), including overscroll.
   useEffect(() => {
-    const dark = pathname === '/'
-    document.documentElement.style.background = dark ? '#111111' : ''
-    document.body.style.background = dark ? '#111111' : ''
-  }, [pathname])
-  if (pathname === '/') return <>{children}</>
+    document.documentElement.style.background = '#111111'
+    document.body.style.background = '#111111'
+  }, [])
   return (
-    <>
-      <NavBar />
-      <main className="container mx-auto px-4 py-6">{children}</main>
-    </>
+    <div className={s.page}>
+      <SiteHeader />
+      <main>{children}</main>
+      <SiteFooter />
+    </div>
   )
 }

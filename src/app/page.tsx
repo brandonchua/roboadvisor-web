@@ -1,7 +1,7 @@
 // src/app/page.tsx — FinCow master landing (institutional terminal layout on the #111111 ground)
 import Link from 'next/link'
 import s from './landing.module.css'
-import { AccessForm, FeedStatus, SessionMonitor, TickerGrid, WorldClocks } from './landing/Live'
+import { AccessForm, SessionMonitor, TickerGrid } from './landing/Live'
 
 const CHARTS = 'https://charts.fincow.com'
 
@@ -28,30 +28,7 @@ const ROBO_SPECS = [
 
 export default function Home() {
   return (
-    <div className={s.page}>
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      <link rel="stylesheet" precedence="default" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" />
-
-      <header className={s.top}>
-        <div className={`${s.wrap} ${s.topRow}`}>
-          <Link href="/" className={s.brand}>
-            <img src="/images/fincow-logo.png" alt="" width={30} height={30} />
-            FinCow <span className={s.tag}>TERMINAL</span>
-          </Link>
-          <nav aria-label="Main" className={s.nav}>
-            <a href="#markets">Markets</a>
-            <a href="#platform">Platform</a>
-            <a href="#robo">RoboAdvisor</a>
-            <a href="#access">Access</a>
-          </nav>
-          <div className={s.topRight}>
-            <FeedStatus />
-            <a href={`${CHARTS}/login`} className={s.btnSm}>Member sign in</a>
-          </div>
-        </div>
-      </header>
-
+    <>
       <section className={s.hero} aria-labelledby="hero-h">
         <div className={`${s.wrap} ${s.heroGrid}`}>
           <div className={s.heroCopy}>
@@ -127,21 +104,6 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className={s.foot}>
-        <div className={s.wrap}>
-          <WorldClocks />
-          <div className={s.footRow}>
-            <div className={s.footBrand}><img src="/images/fincow-logo.png" alt="" width={22} height={22} /><span>© 2026 FinCow</span></div>
-            <div className={s.footLinks}>
-              <a href={`${CHARTS}/login`}>Member sign in</a>
-              <Link href="/questionnaire">RoboAdvisor</Link>
-              <Link href="/universe">Fund universe</Link>
-              <Link href="/about">About</Link>
-            </div>
-          </div>
-          <p className={s.disclaimer}>FinCow provides analytics and educational portfolio tools. Nothing on this site is investment advice or an offer to buy or sell any financial product.</p>
-        </div>
-      </footer>
-    </div>
+    </>
   )
 }
